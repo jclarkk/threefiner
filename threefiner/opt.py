@@ -40,7 +40,7 @@ class Options:
     save: Optional[str] = None
 
     # guidance mode
-    mode: Literal['SD', 'IF', 'IF2', 'SDCN', 'SD_NFSD', 'IF2_NFSD', 'SD_ISM', 'IF2_ISM'] = 'IF2'
+    mode: Literal['SD', 'SDXL', 'SDXLT', 'IF', 'IF2', 'SDCN', 'SD_NFSD', 'IF2_NFSD', 'SD_ISM', 'IF2_ISM'] = 'IF2'
     # renderer geometry mode
     geom_mode: Literal['mesh', 'diffmc', 'pbr_mesh', 'pbr_diffmc'] = 'diffmc'
     # renderer texture mode
@@ -103,6 +103,18 @@ config_doc['sd'] = 'coarse-level generation with stable-diffusion 2.'
 config_defaults['sd'] = Options(
     mode='SD',
     iters=800,
+)
+
+config_doc['sdxl'] = 'coarse-level generation with stable-diffusion xl.'
+config_defaults['sdxl'] = Options(
+    mode='SDXL',
+    iters=400,
+)
+
+config_doc['sdxlt'] = 'coarse-level generation with stable-diffusion xl turbo.'
+config_defaults['sdxlt'] = Options(
+    mode='SDXLT',
+    iters=400,
 )
 
 config_doc['if'] = 'coarse-level generation with deepfloyd-if I.'

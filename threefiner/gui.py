@@ -120,6 +120,12 @@ class GUI:
             elif self.opt.mode == 'SDCN':
                 from threefiner.guidance.sdcn_utils import StableDiffusionControlNet
                 self.guidance = StableDiffusionControlNet(self.device, vram_O=self.opt.vram_O)
+            elif self.opt.mode == 'SDXL':
+                from threefiner.guidance.sdxl_utils import StableDiffusionXL
+                self.guidance = StableDiffusionXL(self.device, 'xl-1.0', vram_O=self.opt.vram_O)
+            elif self.opt.mode == 'SDXLT':
+                from threefiner.guidance.sdxl_utils import StableDiffusionXL
+                self.guidance = StableDiffusionXL(self.device, 'turbo', vram_O=self.opt.vram_O)
             elif self.opt.mode == 'IF':
                 from threefiner.guidance.if_utils import IF
                 self.guidance = IF(self.device, vram_O=self.opt.vram_O)
@@ -143,7 +149,6 @@ class GUI:
         with torch.no_grad():
             self.guidance.get_text_embeds([self.prompt], [self.negative_prompt])
 
-           
     def train_step(self):
         starter = torch.cuda.Event(enable_timing=True)
         ender = torch.cuda.Event(enable_timing=True)
